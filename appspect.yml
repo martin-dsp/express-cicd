@@ -1,0 +1,15 @@
+#/appspec.yml
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/ec2-user/build
+hooks:
+  BeforeInstall:
+    - location: /initialize.sh
+      runas: root
+  AppliationStart:
+    - location: /start.sh
+  ValidateService:
+    - location: /healthCheck.sh
+      runas: ec2-user
